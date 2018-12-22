@@ -26,3 +26,7 @@ document.onkeyup = function(event) {
     $("#guessed").append(textnode);
     // document.getElementById("guessed").appendChild(textnode);
 }
+
+function randomSelec(){
+    return Math.floor(Math.random()*currentWord.length)+1;
+}
