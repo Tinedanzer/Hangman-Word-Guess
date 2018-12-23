@@ -9,6 +9,7 @@ let loss=0;
 // need to modify math stuff, it's returning undefined and messing up length
 // i've surmised the problem is within the placeBlanks() for loop.
 // *********************************************************
+// Global Functions
 randomSelection=()=>{
     return Math.floor(Math.random()*currentWord.length)+1;
 };
@@ -17,13 +18,17 @@ pushKey=()=>{
 };
 placeBlanks=()=>{
     $('#spaces').empty();
-    for (let i = 0; i < currentWord[randomSelection()].length; i++) {
-        $('#spaces').append('_');
-        $('#spaces').append(' ');
-        $('#spaces').attr('id', 'letter'+i);
+    let newWord=currentWord[randomSelection()]
+    for (let i = 0; i < newWord.length; i++) {
+        let magicSpace = '_ ';
+        // magicSpace.push('_');
+        // magicSpace.push(' ');
+        // magicSpace.attr('id', 'letter'+i);
+        $('#spaces').append(magicSpace);
+        // $('#spaces').attr('id', 'letter'+i);
     }
 };
-console.log(currentWord[randomSelection()].length);
+// console.log(currentWord[randomSelection()].length);
 placeBlanks();
 // adding a win counter and producing a new game
 winCounter=()=>{
@@ -43,14 +48,14 @@ loseMessage=()=>{
 // returns a number of letters based on the random word selected:
 document.onkeyup = function(event) {
     // var node =document.createElement("li");
-    let x= event.key;
-    // const textnode =document.createTextNode(x); same thing as $("#guessed").append(x);
+    let keyP= event.key;
+    // const tekeytnode =document.createTextNode(x); same thing as $("#guessed").append(x);
     // node.append(textnode);
     for (let i = 0; i < guessJs.length; i++) {
         // .every after guessJs.every checks all of the array at once. can be used in the parameter
-        if(x !== guessJs[i] && x !== guessJs[i+1] && x!==guessJs[i+2]&&x!==guessJs[i+3]){
+        if(keyP !== guessJs[i] && keyP !== guessJs[i+1] && keyP!==guessJs[i+2]&&keyP!==guessJs[i+3]){
             $("#guessed").append(spacing);
-            $("#guessed").append(x);    
+            $("#guessed").append(keyP);    
             pushKey();
             guesses--;
             $('#chances').html(guesses);
@@ -59,7 +64,7 @@ document.onkeyup = function(event) {
                 }
             break;
         }
-        else if(x === guessJs[i]){
+        else if(keyP === guessJs[i]){
             alert('You have already chosen this letter, try being better!');   
             break;
         };
