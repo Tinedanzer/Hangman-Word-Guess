@@ -1,14 +1,22 @@
 const spacing= " ";
 const currentWord=['cheer','grumpy', 'funshine','tenderheart', 'share','surprise'];
 const guessJs=[''];
-function randomSelection(){
+// need to modify math stuff, it's returning undefined
+randomSelection=()=>{
     return Math.floor(Math.random()*currentWord.length)+1;
-}
-function pushKey(){
+};
+pushKey=()=>{
     guessJs.push(event.key);
-}
+};
+placeBlanks=()=>{
+    for (let i = 0; i < currentWord[randomSelection()].length; i++) {
+        $("#spaces").append('_');
+        $('#spaces').append(' ');
+    }
+};
+placeBlanks();
 // returns a number of letters based on the random word selected:
-// currentWord[randomSelection()].length
+console.log(currentWord[randomSelection()].length);
 document.onkeyup = function(event) {
     // var node =document.createElement("li");
     const x= event.key;
