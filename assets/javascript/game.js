@@ -20,12 +20,16 @@ placeBlanks=()=>{
     $('#spaces').empty();
     let newWord=currentWord[randomSelection()]
     for (let i = 0; i < newWord.length; i++) {
-        let magicSpace = '_ ';
-        // magicSpace.push('_');
-        // magicSpace.push(' ');
+        let magicSpace = '';
+        magicSpace+='_';
+        magicSpace+=' ';
+        // ************** 
+        // here i need to  create a new div, in order to stick a new id on....
+        // I cannot simply stack ids onto this space... new div should be included with magicSpace
+        // ****************
         // magicSpace.attr('id', 'letter'+i);
         $('#spaces').append(magicSpace);
-        // $('#spaces').attr('id', 'letter'+i);
+        $('#spaces').attr('id', 'letter'+i);
     }
 };
 // console.log(currentWord[randomSelection()].length);
