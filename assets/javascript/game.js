@@ -25,12 +25,13 @@ placeBlanks=()=>{
 };
 console.log(currentWord[randomSelection()].length);
 placeBlanks();
-
+// adding a win counter and producing a new game
 winCounter=()=>{
     win++
     $('#wins').append(win);
     placeBlanks();
 };
+// resetting guesses, guessJs array and html page.
 loseMessage=()=>{
     alert("Sorry, you have failed. #notsorry");
     guesses=13;
@@ -42,7 +43,7 @@ loseMessage=()=>{
 // returns a number of letters based on the random word selected:
 document.onkeyup = function(event) {
     // var node =document.createElement("li");
-    const x= event.key;
+    let x= event.key;
     // const textnode =document.createTextNode(x); same thing as $("#guessed").append(x);
     // node.append(textnode);
     for (let i = 0; i < guessJs.length; i++) {
