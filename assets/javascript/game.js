@@ -7,7 +7,7 @@ let win=0;
 let loss=0;
 // *********************************************************
 // need to modify math stuff, it's returning undefined and messing up length
-// i've sumised the problem is within the placeBlanks() for loop.
+// i've surmised the problem is within the placeBlanks() for loop.
 // *********************************************************
 randomSelection=()=>{
     return Math.floor(Math.random()*currentWord.length)+1;
@@ -33,7 +33,7 @@ winCounter=()=>{
 };
 // resetting guesses, guessJs array and html page.
 loseMessage=()=>{
-    alert("Sorry, you have failed. #notsorry");
+    alert("Sorry #notsorry, you have failed. Try again!");
     guesses=13;
     $('#chances').html(guesses);
     guessJs=[''];
