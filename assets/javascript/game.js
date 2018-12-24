@@ -68,6 +68,8 @@ const gameInit=()=>{
 };
 document.onkeyup = function(event) {
     let keyP= event.key;
+// converting the user key press into a string    
+    let keyP3=[keyP];
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
 // checks if the keypress matches any of the chosen array's letters. returns true if it does
@@ -82,15 +84,16 @@ document.onkeyup = function(event) {
             console.log('this happened');
             pushKey();
             guessCounter();
-// converting the user key press into a string
-            let keyP2=String.fromCharCode(event.keycode);
               // *************************
     // TODO:add a win condition in this function with an If...... more work to be done on it
     // *************************
+    // consider taking this for loop out of the above IF statement
             for (let i = 0; i < chosenLetters.length; i++) {   
                 console.log(chosenLetters[i]);
-                console.log(keyP2);                             
-                if(keyP==chosenLetters[i]){
+                console.log(chosenLetters[0][i]);
+                console.log(keyP);
+                // console.log(keyP.toString(keyP));                             
+                if(keyP===chosenLetters[0][i]){
                     console.log('success');
                     // if($('#blank'+i)===('#letter'+i)){
                         $('#blank'+i).html(keyP);
