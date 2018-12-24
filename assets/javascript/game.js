@@ -6,8 +6,7 @@ let guessJs=[''];
 let guesses= 13;
 let win=0;
 const letters = /^[A-Za-z]+$/;
-// const lettersMain = /^[A-Za-z]+$/;
-// add in loss counter if u wanna on html  and javascript.
+// add in loss counter if u wanna on html.
 let loss=0;
 // Global Functions
 // math function to give me, ultimately an index of 0-5
@@ -21,18 +20,14 @@ const pushKey=()=>{
 // also gives ids to the letters of the randomly chosen word!
 const placeBlanks=()=>{
 // resetting a few fields before adding new spaces
-    $('#spaces').empty();
     chosenLetters=[];
     let newWord=currentWord[randomSelection()].split('');
-// *******************************
-// TO DO: Might have to change the word into specific letters, made into strings, so the first for loop 
-// in onkeyup function works
-    console.log(newWord);
+console.log(newWord);
     chosenLetters.push(newWord);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs
         let magicSpace= $('<span>').attr('id', 'letter'+i);
-        console.log(Object.values(magicSpace));
+console.log(Object.values(magicSpace));
         $('#spaces').append(magicSpace);
         $('#letter'+i).append("_");
         $('#letter'+i).append(spacing);
@@ -48,19 +43,21 @@ const winCounter=()=>{
     win++
     $('#wins').html(win);
     alert('You\'re a Carebear now!')
-    placeBlanks();
+    gameInit();
 };
 // resetting guesses, guessJs array and html page.
 const loseMessage=()=>{
+    loss++;
     alert("Sorry #notsorry, you have failed. Try again!");
-    guesses=13;
-    $('#chances').html(guesses);
-    guessJs=[''];
-    $('#guessed').empty();
-    placeBlanks();
+    gameInit();
 };
 // game start function
 const gameInit=()=>{
+    guesses=13;
+    $('#chances').html(guesses)
+    $('#guessed').empty();
+    $('#spaces').empty();
+    guessJs=[''];
     placeBlanks();
 };
 document.onkeyup = function(event) {
@@ -71,9 +68,9 @@ document.onkeyup = function(event) {
     let checkSome=(Check)=>{
         return Check===keyP;
     };
-    // for (let i = 0; i < guessJs.length; i++) {
 // **********************************
-// posted above as well, need to break letters into strings to check)
+// need to work on this conditional check
+// **********************************
         if(chosenLetters.some(checkSome)===true){
             console.log('this happened');
 // *******************************************
@@ -95,6 +92,5 @@ document.onkeyup = function(event) {
         else if(guessJs.some(checkSome) === true){
             alert('You have already chosen this letter, try being better!');   
         };
-    // };
 };
 gameInit();
