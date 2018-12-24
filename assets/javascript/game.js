@@ -5,36 +5,23 @@ let guesses= 13;
 let win=0;
 // add in loss counter if u wanna on html  and javascript.
 let loss=0;
-// *********************************************************
-// need to modify math stuff, it's returning undefined and messing up length
-// i've surmised the problem is within the placeBlanks() for loop.
-// *********************************************************
 // Global Functions
-randomSelection=()=>{
+const randomSelection=()=>{
     return Math.floor(Math.random()*currentWord.length);
 };
-pushKey=()=>{
+const pushKey=()=>{
     guessJs.push(event.key);
 };
-placeBlanks=()=>{
+const placeBlanks=()=>{
     $('#spaces').empty();
     let newWord=currentWord[randomSelection()]
     for (let i = 0; i < newWord.length; i++) {
-        // let magicSpace='';
-        // console.log(magicSpace);
-        // magicSpace+='_';
-        // next line turns magicSpace into an array of objects
     //    let magicSpace=document.createElement('span');
     //     magicSpace.setAttribute('id',"letter"+i);
         let magicSpace= $('<span>').attr('id', 'letter'+i);
         // console.log(magicSpace.__proto__.valueOf());
         // console.log(Object.values(magicSpace));
-        // magicSpace+='_';
         console.log(magicSpace);
-        // ************** 
-        // here i need to  create a new div, in order to stick a new id on....
-        // I cannot simply stack ids onto this space... new div should be included with magicSpace
-        // ****************
         // magicSpace.attr('id', 'letter'+i);
         $('#spaces').append(magicSpace);
         $('#letter'+i).append("_");
@@ -42,22 +29,25 @@ placeBlanks=()=>{
         // $('#spaces').attr('id', 'letter'+i);
     }
 };
-// console.log(currentWord[randomSelection()].length);
 placeBlanks();
 // adding a win counter and producing a new game
-winCounter=()=>{
+const winCounter=()=>{
     win++
     $('#wins').append(win);
     placeBlanks();
 };
 // resetting guesses, guessJs array and html page.
-loseMessage=()=>{
+const loseMessage=()=>{
     alert("Sorry #notsorry, you have failed. Try again!");
     guesses=13;
     $('#chances').html(guesses);
     guessJs=[''];
     $('#guessed').empty();
     placeBlanks();
+};
+// game start function
+const gameInit=()=>{
+
 };
 // returns a number of letters based on the random word selected:
 document.onkeyup = function(event) {
