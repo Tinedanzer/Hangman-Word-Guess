@@ -23,10 +23,14 @@ const placeBlanks=()=>{
 // resetting a few fields before adding new spaces
     $('#spaces').empty();
     chosenLetters=[];
-    let newWord=currentWord[randomSelection()]
-    chosenLetters.push(newWord)
+    let newWord=currentWord[randomSelection()].split('');
+// *******************************
+// TO DO: Might have to change the word into specific letters, made into strings, so the first for loop 
+// in onkeyup function works
+    console.log(newWord);
+    chosenLetters.push(newWord);
     for (let i = 0; i < newWord.length; i++) {
-// creates the spaces with IDS
+// creates the spaces with IDs
         let magicSpace= $('<span>').attr('id', 'letter'+i);
         console.log(Object.values(magicSpace));
         $('#spaces').append(magicSpace);
@@ -63,22 +67,22 @@ document.onkeyup = function(event) {
     let keyP= event.key;
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
-    let checkSome=(guessesCheck, i, arr)=>{
-        return guessesCheck ===keyP;
-    }
 // checks if the keypress matches any of the chosen word's letters. returns true
-    let checkSome2=(lettersCheck)=>{
-        return chosenLetters===keyP;
+    let checkSome=(Check)=>{
+        return Check===keyP;
     };
     // for (let i = 0; i < guessJs.length; i++) {
-        if(chosenLetters.some(checkSome2)){
+// **********************************
+// posted above as well, need to break letters into strings to check)
+        if(chosenLetters.some(checkSome)===true){
+            console.log('this happened');
 // *******************************************
 // TO DO: CREATE LETTER ID, then match your spacing id(already created) with the letter ID and
 // fill in proper blank
 // *******************************************
             pushKey();
-        };
-        if(guessJs.some(checkSome) !==true && keyP.match(letters)){
+        }
+        else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
