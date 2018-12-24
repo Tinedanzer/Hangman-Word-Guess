@@ -27,18 +27,18 @@ const placeBlanks=()=>{
 console.log(chosenLetters[0]);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs
-        let magicSpace= $('<span>').attr('id', 'letter'+i);
-console.log(Object.values(magicSpace));
+        let magicSpace= $('<span>').attr('id', 'blank'+i);
+// console.log(Object.values(magicSpace));
         $('#spaces').append(magicSpace);
-        $('#letter'+i).append("_");
-        $('#letter'+i).append(spacing);
+        $('#blank'+i).append("_");
+        $('#blank'+i).append(spacing);
 // ****************
 // TO DO:
 // creates letter IDS and matches them with the space IDS
 // ****************
 
     }
-};
+ };
 const guessCounter=()=>{
     guesses--;
     $('#chances').html(guesses);
@@ -48,7 +48,7 @@ const guessCounter=()=>{
 const winCounter=()=>{
     win++
     $('#wins').html(win);
-    alert('You\'re a Carebear now!')
+    alert('Congratulations !!! You\'re a Carebear now!')
     gameInit();
 };
 // resetting guesses, guessJs array and html page.
@@ -70,7 +70,7 @@ document.onkeyup = function(event) {
     let keyP= event.key;
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
-// checks if the keypress matches any of the chosen word's letters. returns true
+// checks if the keypress matches any of the chosen array's letters. returns true if it does
     let checkSome=(Check)=>{
         return Check===keyP;
     };
@@ -78,12 +78,29 @@ document.onkeyup = function(event) {
 // TO DO: CREATE LETTER ID, then match your spacing id(already created) with the letter ID and
 // fill in proper blank
 // *******************************************
-        if(chosenLetters[0].some(checkSome)==true && guessJs.some(checkSome)!==true){
+        if(chosenLetters[0].some(checkSome)===true && guessJs.some(checkSome)!==true){
             console.log('this happened');
             pushKey();
+            guessCounter();
+// converting the user key press into a string
+            let keyP2=String.fromCharCode(event.keycode);
               // *************************
-    // TODO:add a win condition in this function with an If
+    // TODO:add a win condition in this function with an If...... more work to be done on it
     // *************************
+            for (let i = 0; i < chosenLetters.length; i++) {   
+                console.log(chosenLetters[i]);
+                console.log(keyP2);                             
+                if(keyP==chosenLetters[i]){
+                    console.log('success');
+                    // if($('#blank'+i)===('#letter'+i)){
+                        $('#blank'+i).html(keyP);
+                        
+                        // if(x==x){
+                        //     winCounter();
+                        // }
+                    // }
+                }
+            }
         }
         else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
             $("#guessed").append(spacing);
