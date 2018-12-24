@@ -1,8 +1,10 @@
 const spacing= " ";
 const currentWord=['cheer','grumpy','funshine','tenderheart','share','surprise'];
+// guessed letters go in this array.
 let guessJs=[''];
 let guesses= 13;
 let win=0;
+const letters = /^[A-Za-z]+$/;
 // add in loss counter if u wanna on html  and javascript.
 let loss=0;
 // Global Functions
@@ -16,24 +18,19 @@ const placeBlanks=()=>{
     $('#spaces').empty();
     let newWord=currentWord[randomSelection()]
     for (let i = 0; i < newWord.length; i++) {
-    //    let magicSpace=document.createElement('span');
-    //     magicSpace.setAttribute('id',"letter"+i);
+    //    let magicSpace=document.createElement('span'); magicSpace.setAttribute('id',"letter"+i);
         let magicSpace= $('<span>').attr('id', 'letter'+i);
-        // console.log(magicSpace.__proto__.valueOf());
-        // console.log(Object.values(magicSpace));
-        console.log(magicSpace);
-        // magicSpace.attr('id', 'letter'+i);
+        console.log(Object.values(magicSpace));
         $('#spaces').append(magicSpace);
         $('#letter'+i).append("_");
         $('#letter'+i).append(spacing);
-        // $('#spaces').attr('id', 'letter'+i);
     }
 };
-placeBlanks();
 // adding a win counter and producing a new game
 const winCounter=()=>{
     win++
-    $('#wins').append(win);
+    $('#wins').html(win);
+    alert('You\'re a Carebear now!')
     placeBlanks();
 };
 // resetting guesses, guessJs array and html page.
@@ -49,15 +46,15 @@ const loseMessage=()=>{
 const gameInit=()=>{
     placeBlanks();
 };
-// returns a number of letters based on the random word selected:
 document.onkeyup = function(event) {
-    // var node =document.createElement("li");
     let keyP= event.key;
-    // const tekeytnode =document.createTextNode(x); same thing as $("#guessed").append(x);
-    // node.append(textnode);
-    for (let i = 0; i < guessJs.length; i++) {
-        // .every after guessJs.every checks all of the array at once. can be used in the parameter
-        if(keyP !== guessJs[i] && keyP !== guessJs[i+1] && keyP!==guessJs[i+2]&&keyP!==guessJs[i+3]){
+// instead of a for loop, i opted to use a .some() to check if any of the array matches with
+// the key pressed; if it did, the match returns true and is evaluated below.
+    let checkSome=(guessesCheck, i, arr)=>{
+        return guessesCheck ===keyP;
+    }
+    // for (let i = 0; i < guessJs.length; i++) {
+        if(guessJs.some(checkSome) !==true){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
@@ -66,13 +63,11 @@ document.onkeyup = function(event) {
                 if(guesses===0){
                     loseMessage();
                 }
-            break;
         }
-        else if(keyP === guessJs[i]){
+        else if(true === guessJs.some(checkSome)){
             alert('You have already chosen this letter, try being better!');   
-            break;
         };
 //    exits for loop
-    };
-}
-
+    // };
+};
+gameInit();
