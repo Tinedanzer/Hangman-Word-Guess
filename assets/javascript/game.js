@@ -11,7 +11,7 @@ let loss=0;
 // *********************************************************
 // Global Functions
 randomSelection=()=>{
-    return Math.floor(Math.random()*currentWord.length)+1;
+    return Math.floor(Math.random()*currentWord.length);
 };
 pushKey=()=>{
     guessJs.push(event.key);
@@ -20,16 +20,20 @@ placeBlanks=()=>{
     $('#spaces').empty();
     let newWord=currentWord[randomSelection()]
     for (let i = 0; i < newWord.length; i++) {
-        let magicSpace = $('<div>').attr('id', 'letter'+i);
+        let magicSpace='';
+        console.log(magicSpace);
         magicSpace+='_';
-        // magicSpace+=' ';
-        console.log(magicSpace.__proto__);
+        magicSpace+=' ';
+        magicSpace+= $('<div>').attr('id', 'letter'+i);
+        console.log(magicSpace.__proto__.valueOf());
+        console.log(Object.values(magicSpace));
         // ************** 
         // here i need to  create a new div, in order to stick a new id on....
         // I cannot simply stack ids onto this space... new div should be included with magicSpace
         // ****************
         // magicSpace.attr('id', 'letter'+i);
-        $('#spaces').append(magicSpace);
+        $('#spaces').append(magicSpace[0]);
+        $('#spaces').append(magicSpace[1]);
         // $('#spaces').attr('id', 'letter'+i);
     }
 };
