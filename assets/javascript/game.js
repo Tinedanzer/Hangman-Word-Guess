@@ -24,6 +24,7 @@ placeBlanks=()=>{
         console.log(magicSpace);
         magicSpace+='_';
         magicSpace+=' ';
+        // next line turns magicSpace into an array of objects
         magicSpace+= $('<div>').attr('id', 'letter'+i);
         console.log(magicSpace.__proto__.valueOf());
         console.log(Object.values(magicSpace));
