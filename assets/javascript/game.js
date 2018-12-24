@@ -1,8 +1,9 @@
 const spacing= " ";
 const currentWord=['cheer','grumpy','funshine','tenderheart','share','surprise'];
+// randomly chosen word goes in this array.
 let chosenLetters=[];
 // guessed letters go in this array.
-let guessJs=[''];
+let guessJs=[];
 let guesses= 13;
 let win=0;
 const letters = /^[A-Za-z]+$/;
@@ -22,8 +23,8 @@ const placeBlanks=()=>{
 // resetting a few fields before adding new spaces
     chosenLetters=[];
     let newWord=currentWord[randomSelection()].split('');
-console.log(newWord);
     chosenLetters.push(newWord);
+console.log(chosenLetters[0]);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs
         let magicSpace= $('<span>').attr('id', 'letter'+i);
@@ -38,6 +39,11 @@ console.log(Object.values(magicSpace));
 
     }
 };
+const guessCounter=()=>{
+    guesses--;
+    $('#chances').html(guesses);
+    if(guesses===0){
+            loseMessage();}};
 // adding a win counter and producing a new game
 const winCounter=()=>{
     win++
@@ -57,7 +63,7 @@ const gameInit=()=>{
     $('#chances').html(guesses)
     $('#guessed').empty();
     $('#spaces').empty();
-    guessJs=[''];
+    guessJs=[];
     placeBlanks();
 };
 document.onkeyup = function(event) {
@@ -68,26 +74,22 @@ document.onkeyup = function(event) {
     let checkSome=(Check)=>{
         return Check===keyP;
     };
-// **********************************
-// need to work on this conditional check
-// **********************************
-        if(chosenLetters.some(checkSome)===true){
-            console.log('this happened');
 // *******************************************
 // TO DO: CREATE LETTER ID, then match your spacing id(already created) with the letter ID and
 // fill in proper blank
 // *******************************************
+        if(chosenLetters[0].some(checkSome)==true && guessJs.some(checkSome)!==true){
+            console.log('this happened');
             pushKey();
+              // *************************
+    // TODO:add a win condition in this function with an If
+    // *************************
         }
         else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
-            guesses--;
-            $('#chances').html(guesses);
-                if(guesses===0){
-                    loseMessage();
-                }
+            guessCounter();
         }
         else if(guessJs.some(checkSome) === true){
             alert('You have already chosen this letter, try being better!');   
