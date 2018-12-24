@@ -47,7 +47,7 @@ const loseMessage=()=>{
 };
 // game start function
 const gameInit=()=>{
-
+    placeBlanks();
 };
 // returns a number of letters based on the random word selected:
 document.onkeyup = function(event) {
