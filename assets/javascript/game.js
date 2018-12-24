@@ -20,21 +20,25 @@ placeBlanks=()=>{
     $('#spaces').empty();
     let newWord=currentWord[randomSelection()]
     for (let i = 0; i < newWord.length; i++) {
-        let magicSpace='';
-        console.log(magicSpace);
-        magicSpace+='_';
-        magicSpace+=' ';
+        // let magicSpace='';
+        // console.log(magicSpace);
+        // magicSpace+='_';
         // next line turns magicSpace into an array of objects
-        magicSpace+= $('<div>').attr('id', 'letter'+i);
-        console.log(magicSpace.__proto__.valueOf());
-        console.log(Object.values(magicSpace));
+    //    let magicSpace=document.createElement('span');
+    //     magicSpace.setAttribute('id',"letter"+i);
+        let magicSpace= $('<span>').attr('id', 'letter'+i);
+        // console.log(magicSpace.__proto__.valueOf());
+        // console.log(Object.values(magicSpace));
+        // magicSpace+='_';
+        console.log(magicSpace);
         // ************** 
         // here i need to  create a new div, in order to stick a new id on....
         // I cannot simply stack ids onto this space... new div should be included with magicSpace
         // ****************
         // magicSpace.attr('id', 'letter'+i);
-        $('#spaces').append(magicSpace[0]);
-        $('#spaces').append(magicSpace[1]);
+        $('#spaces').append(magicSpace);
+        $('#letter'+i).append("_");
+        $('#letter'+i).append(spacing);
         // $('#spaces').attr('id', 'letter'+i);
     }
 };
