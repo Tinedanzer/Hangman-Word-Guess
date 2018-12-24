@@ -21,7 +21,7 @@ const pushKey=()=>{
 // also gives ids to the letters of the randomly chosen word!
 const placeBlanks=()=>{
 // resetting a few fields before adding new spaces
-    chosenLetters=[];
+    // chosenLetters=[];
     let newWord=currentWord[randomSelection()].split('');
     chosenLetters.push(newWord);
 console.log(chosenLetters[0]);
@@ -84,11 +84,8 @@ document.onkeyup = function(event) {
             console.log('this happened');
             pushKey();
             guessCounter();
-              // *************************
-    // TODO:add a win condition in this function with an If...... more work to be done on it
-    // *************************
-    // consider taking this for loop out of the above IF statement
-            for (let i = 0; i < chosenLetters.length; i++) {   
+
+            for (let i = 0; i < chosenLetters[0].length; i++) {   
                 console.log(chosenLetters[i]);
                 console.log(chosenLetters[0][i]);
                 console.log(keyP);
@@ -97,7 +94,9 @@ document.onkeyup = function(event) {
                     console.log('success');
                     // if($('#blank'+i)===('#letter'+i)){
                         $('#blank'+i).html(keyP);
-                        
+// *************************
+// TODO:add a win condition in this function with an If...... more work to be done on it
+// *************************
                         // if(x==x){
                         //     winCounter();
                         // }
