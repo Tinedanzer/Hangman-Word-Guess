@@ -2,6 +2,7 @@ const spacing= " ";
 const currentWord=['cheer','grumpy','funshine','tenderheart','share','surprise'];
 // randomly chosen word goes in this array.
 let chosenLetters=[];
+let guessedLetters=[];
 // guessed letters go in this array.
 let guessJs=[];
 let guesses= 13;
@@ -17,6 +18,10 @@ const randomSelection=()=>{
 const pushKey=()=>{
     guessJs.push(event.key);
 };
+// function to push correctly guessed letters into an array.
+const pushKey2=()=>{
+    guessedLetters.push(event.key);
+};
 // creates new blanks with an appropriate ID, as well as chooses the new random word with the math function
 // also gives ids to the letters of the randomly chosen word!
 const placeBlanks=()=>{
@@ -24,7 +29,6 @@ const placeBlanks=()=>{
     // chosenLetters=[];
     let newWord=currentWord[randomSelection()].split('');
     chosenLetters.push(newWord);
-console.log(chosenLetters[0]);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs
         let magicSpace= $('<span>').attr('id', 'blank'+i);
@@ -70,12 +74,17 @@ document.onkeyup = function(event) {
     let keyP= event.key;
 // converting the user key press into a string    
     let keyP3=[keyP];
+console.log(chosenLetters[0]);
+
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
 // checks if the keypress matches any of the chosen array's letters. returns true if it does
-    let checkSome=(Check)=>{
+    const checkSome=(Check)=>{
         return Check===keyP;
     };
+    const winCondition=(Value) =>{
+        return Value ===chosenLetters[0];
+      }
 // *******************************************
 // TO DO: CREATE LETTER ID, then match your spacing id(already created) with the letter ID and
 // fill in proper blank
@@ -83,33 +92,37 @@ document.onkeyup = function(event) {
         if(chosenLetters[0].some(checkSome)===true && guessJs.some(checkSome)!==true){
             console.log('this happened');
             pushKey();
+            pushKey2();
             guessCounter();
-
-            for (let i = 0; i < chosenLetters[0].length; i++) {   
-                console.log(chosenLetters[i]);
-                console.log(chosenLetters[0][i]);
+            console.log(guessedLetters);
+            for (let i = 0; i < chosenLetters[0].length; i++) {
+                // console.log(chosenLetters[i]);
+                // console.log(chosenLetters[0][i]);
                 console.log(keyP);
                 // console.log(keyP.toString(keyP));                             
                 if(keyP===chosenLetters[0][i]){
                     console.log('success');
-                    // if($('#blank'+i)===('#letter'+i)){
                         $('#blank'+i).html(keyP);
+// need to change this... push guess characters into an empty array, then use.every to compare
+                    console.log(guessedLetters.every(winCondition));
 // *************************
 // TODO:add a win condition in this function with an If...... more work to be done on it
 // *************************
-                        // if(x==x){
-                        //     winCounter();
-                        // }
-                    // }
+                    if(guessedLetters.every(winCondition)===true){
+                        console.log('success part2');
+                        winCounter();
+                    }
                 }
             }
         }
+// checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
         else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
             guessCounter();
         }
+// if the letter has already been guessed by the user, return an alert.
         else if(guessJs.some(checkSome) === true){
             alert('You have already chosen this letter, try being better!');   
         };
