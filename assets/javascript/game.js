@@ -26,9 +26,9 @@ const pushKey2=()=>{
 // creates new blanks with an appropriate ID, as well as chooses the new random word with the math function
 // also gives ids to the letters of the randomly chosen word!
 const placeBlanks=()=>{
-// resetting a few fields before adding new spaces
-    // chosenLetters=[];
+// calculating a random word, and then splitting each letter to form an array.
     let newWord=currentWord[randomSelection()].split('');
+// letters for the game
     chosenLetters.push(newWord);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs
@@ -37,11 +37,6 @@ const placeBlanks=()=>{
         $('#spaces').append(magicSpace);
         $('#blank'+i).append("_");
         $('#blank'+i).append(spacing);
-// ****************
-// TO DO:
-// creates letter IDS and matches them with the space IDS
-// ****************
-
     }
  };
 const guessCounter=()=>{
@@ -62,60 +57,46 @@ const loseMessage=()=>{
     alert("Sorry #notsorry, you have failed. Try again!");
     gameInit();
 };
-// game start function
+// game start function and reset function
 const gameInit=()=>{
     guesses=13;
     $('#chances').html(guesses)
     $('#guessed').empty();
     $('#spaces').empty();
     guessJs=[];
+    guessedLetters=[];
+    chosenLetters=[];
     placeBlanks();
 };
 document.onkeyup = function(event) {
     let keyP= event.key;
-// converting the user key press into a string    
-    let keyP3=[keyP];
 console.log(chosenLetters[0]);
-
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
 // checks if the keypress matches any of the chosen array's letters. returns true if it does
     const checkSome=(Check)=>{
         return Check===keyP;
     };
-    const winCondition=(Value) =>{
-        return Value ===chosenLetters[0];
-      }
-// *******************************************
-// TO DO: CREATE LETTER ID, then match your spacing id(already created) with the letter ID and
-// fill in proper blank
-// *******************************************
         if(chosenLetters[0].some(checkSome)===true && guessJs.some(checkSome)!==true){
             console.log('this happened');
             pushKey();
-            pushKey2();
-            guessCounter();
-            console.log(guessedLetters);
             for (let i = 0; i < chosenLetters[0].length; i++) {
-                // console.log(chosenLetters[i]);
                 // console.log(chosenLetters[0][i]);
-                console.log(keyP);
-                // console.log(keyP.toString(keyP));                             
+// if the guess is a part of the word, push the letter to the guessLetters array for each time
+// the letter is a part of the word
                 if(keyP===chosenLetters[0][i]){
-                    console.log('success');
-                        $('#blank'+i).html(keyP);
-// need to change this... push guess characters into an empty array, then use.every to compare
-                    // console.log(guessedLetters.every(winCondition));
-                    console.log(chosenLetters[0].length);
-// *************************
-// TODO:it's working, but more work to be done on it; replace win condition to something better.
-// *************************
+                    pushKey2();
+                    console.log(guessedLetters);
+                    $('#blank'+i).html(keyP);
                     if(guessedLetters.length==chosenLetters[0].length){
-                        console.log('success part2');
-                        winCounter();
+                        setTimeout(winCounter,250);
+                        break;
                     }
                 }
             }
+// including guessCounter to reduce guesses and determine loss, after the win if loop, allowing for wins
+// to be dominant over losses in case of a tie.
+            guessCounter();
         }
 // checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
         else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
