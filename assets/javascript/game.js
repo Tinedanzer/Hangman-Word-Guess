@@ -107,7 +107,7 @@ console.log(chosenLetters[0]);
         }
 // if the letter has already been guessed by the user, return an alert.
         else if(guessJs.some(checkSome) === true){
-            alert('You have already chosen this letter, try being better!');   
+            alert('You have already chosen this letter.... O_o');   
         };
 };
 gameInit();
