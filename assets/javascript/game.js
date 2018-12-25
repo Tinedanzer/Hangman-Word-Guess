@@ -2,6 +2,7 @@ const spacing= " ";
 const currentWord=['cheer','grumpy','funshine','tenderheart','share','surprise'];
 // randomly chosen word goes in this array.
 let chosenLetters=[];
+// correctly guessed letters go in this array.
 let guessedLetters=[];
 // guessed letters go in this array.
 let guessJs=[];
@@ -104,11 +105,12 @@ console.log(chosenLetters[0]);
                     console.log('success');
                         $('#blank'+i).html(keyP);
 // need to change this... push guess characters into an empty array, then use.every to compare
-                    console.log(guessedLetters.every(winCondition));
+                    // console.log(guessedLetters.every(winCondition));
+                    console.log(chosenLetters[0].length);
 // *************************
-// TODO:add a win condition in this function with an If...... more work to be done on it
+// TODO:it's working, but more work to be done on it; replace win condition to something better.
 // *************************
-                    if(guessedLetters.every(winCondition)===true){
+                    if(guessedLetters.length==chosenLetters[0].length){
                         console.log('success part2');
                         winCounter();
                     }
