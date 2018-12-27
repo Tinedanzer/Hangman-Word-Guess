@@ -1,10 +1,7 @@
-#css1{
+#css1,#css2{
     float:right;
-    color:blue
-}
-#css2{
-    float:right;
-    color:blue
+    color:blue;
+    background-color:black
 }
 #css3, #spaces{
     color:blue;
@@ -24,39 +21,32 @@ h1{
     width:50%;
 } */
 #white{
-    position:fixed;
-    left:53%;
-    top:40%;
+    position:absolute;
+    left:9%;
+    top:15%;
     /* max-width:100px; */
-    height:60%;
-    width:15.5%;
+    height:80%;
+    width:40%;
     z-index:1
 }
 #picture{
     float:left
 }
-/* @media screen and (max-width:980px)
+@media screen and (max-width:980px)
 {
-  #main-container{
-    width:60%;
-    float:left;
-    padding-left:20px;
-    margin-bottom:30px;
-  }
-  .work{
-    width: 204px;
-  }
+ 
 }
 @media screen and (max-width:768px)
 {
-  #main-container{
-    width:100%;
-    float:none;
-    padding-left:none;
-    
-  }
+  
 }
 @media screen and (max-width:640px)
 {
-  
-} */
+
+}
+@media screen and (max-width:474px)
+{
+  #white{ 
+      width:48%;
+  }
+}
