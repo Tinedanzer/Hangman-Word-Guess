@@ -17,11 +17,11 @@ const randomSelection=()=>{
     return Math.floor(Math.random()*currentWord.length);
 };
 const pushKey=()=>{
-    guessJs.push(event.key);
+    guessJs.push(event.key.toLowerCase());
 };
 // function to push correctly guessed letters into an array.
 const pushKey2=()=>{
-    guessedLetters.push(event.key);
+    guessedLetters.push(event.key.toLowerCase());
 };
 // creates new blanks with an appropriate ID, as well as chooses the new random word with the math function
 // also gives ids to the letters of the randomly chosen word!
