@@ -32,6 +32,9 @@ h1{
 #picture{
     float:left
 }
+#main-container{
+    background-color:rgb(73, 20, 20);
+}
 @media screen and (max-width:980px)
 {
  
