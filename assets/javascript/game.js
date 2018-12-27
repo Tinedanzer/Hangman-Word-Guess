@@ -70,7 +70,7 @@ const gameInit=()=>{
     placeBlanks();
 };
 document.onkeyup = function(event) {
-    let keyP= event.key;
+    let keyP= event.key.toLowerCase();
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
 // checks if the keypress matches any of the chosen array's letters. returns true if it does
