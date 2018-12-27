@@ -55,6 +55,7 @@ const winCounter=()=>{
 // resetting guesses, guessJs array and html page.
 const loseMessage=()=>{
     loss++;
+    $('#white').css("z-index", "-1");
     alert("Sorry #notsorry, you have failed. Try again!");
     gameInit();
 };
@@ -68,6 +69,8 @@ const gameInit=()=>{
     guessedLetters=[];
     chosenLetters=[];
     placeBlanks();
+// setting a timeout to display the hanged man for 2 seconds.
+    setTimeout(function replaceBox(){$('#white').css("z-index", "1")},2000);
 };
 document.onkeyup = function(event) {
     let keyP= event.key.toLowerCase();

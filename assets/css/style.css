@@ -1,16 +1,36 @@
 #css1{
     float:right;
-    /* left:600px; */
     color:blue
 }
 #css2{
     float:right;
-    /* left:600px; */
     color:blue
 }
 #css3{
     color:blue
 }
 h1{
-    color:black
+    color:black;
+    background-color: pink;
+}
+#colormepretty{
+    position:absolute;
+    left:61%;
+    z-index: 0
+}
+#white{
+    position: absolute;
+    left:63%;
+    top:37%;
+    /* max-width:100px; */
+    height:55%;
+    width:12.5%;
+    z-index:1;
+    -webkit-webkit: opacity 1;
+    -moz-webkit: opacity 1;
+    -ms-webkit: opacity 1;
+    -o-webkit: opacity 1;
+}
+#picture{
+    float:left
 }
