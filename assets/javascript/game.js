@@ -42,7 +42,8 @@ const placeBlanks=()=>{
 const guessCounter=()=>{
     guesses--;
     $('#chances').html(guesses);
-    if(guesses===0){
+// if guesses get to 0, and assuming you didnt win,  you get a lose message.
+    if(guesses===0 && guessedLetters.length!==chosenLetters[0].length){
             loseMessage();}};
 // adding a win counter and producing a new game
 const winCounter=()=>{
@@ -70,15 +71,14 @@ const gameInit=()=>{
 };
 document.onkeyup = function(event) {
     let keyP= event.key;
-console.log(chosenLetters[0]);
 // instead of a for loop, i opted to use a .some() to check if any of the array matches with
 // the key pressed; if it did, the match returns true and is evaluated below.
 // checks if the keypress matches any of the chosen array's letters. returns true if it does
     const checkSome=(Check)=>{
         return Check===keyP;
-    };
+    }; 
         if(chosenLetters[0].some(checkSome)===true && guessJs.some(checkSome)!==true){
-            console.log('this happened');
+console.log('this happened');
             pushKey();
             for (let i = 0; i < chosenLetters[0].length; i++) {
                 // console.log(chosenLetters[0][i]);
@@ -86,7 +86,7 @@ console.log(chosenLetters[0]);
 // the letter is a part of the word
                 if(keyP===chosenLetters[0][i]){
                     pushKey2();
-                    console.log(guessedLetters);
+console.log(guessedLetters);
                     $('#blank'+i).html(keyP);
                     if(guessedLetters.length==chosenLetters[0].length){
                         setTimeout(winCounter,250);
@@ -94,8 +94,8 @@ console.log(chosenLetters[0]);
                     }
                 }
             }
-// including guessCounter to reduce guesses and determine loss, after the win if loop, allowing for wins
-// to be dominant over losses in case of a tie.
+// including guessCounter to reduce guesses and determine loss, as well asallowing for wins
+// to be dominant over losses in case of a tie as shown in loseMessage() within the defined guessCounter above.
             guessCounter();
         }
 // checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
