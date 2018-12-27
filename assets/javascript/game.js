@@ -88,6 +88,7 @@ console.log('this happened');
                     pushKey2();
 console.log(guessedLetters);
                     $('#blank'+i).html(keyP);
+// if the letters from the  designated word matches the correctly guessed letters, you win!
                     if(guessedLetters.length==chosenLetters[0].length){
                         setTimeout(winCounter,250);
                         break;
@@ -99,7 +100,8 @@ console.log(guessedLetters);
             guessCounter();
         }
 // checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
-        else if(guessJs.some(checkSome) !==true && keyP.match(letters)){
+        else if(guessJs.some(checkSome) !==true && keyP.match(letters) && keyP!="shift" && keyP!="control" && 
+        keyP!="enter" && keyP!="alt" && keyP!="capslock"){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
