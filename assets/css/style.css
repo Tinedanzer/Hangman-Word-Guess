@@ -10,28 +10,32 @@
     color:blue;
     font-size: 20px;
 }
+#cssGuessed{
+    background-color:black
+}
 h1{
     color:black;
     background-color: pink
 }
-#colormepretty{
+/* #colormepretty{
     position:fixed;
     left:61%;
-    z-index: 0
-}
+    z-index: 0;
+    width:50%;
+} */
 #white{
-    position:fixed;
+    /* position:fixed; */
     left:63%;
     top:37%;
     /* max-width:100px; */
     height:55%;
-    width:12.5%;
+    width:30.5%;
     z-index:1
 }
 #picture{
     float:left
 }
-@media screen and (max-width:980px)
+/* @media screen and (max-width:980px)
 {
   #main-container{
     width:60%;
@@ -55,4 +59,4 @@ h1{
 @media screen and (max-width:640px)
 {
   
-}
+} */
