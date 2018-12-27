@@ -101,7 +101,7 @@ console.log(guessedLetters);
         }
 // checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
         else if(guessJs.some(checkSome) !==true && keyP.match(letters) && keyP!="shift" && keyP!="control" && 
-        keyP!="enter" && keyP!="alt" && keyP!="capslock"){
+        keyP!="enter" && keyP!="alt" && keyP!="capslock" && keyP!="backspace"){
             $("#guessed").append(spacing);
             $("#guessed").append(keyP);    
             pushKey();
