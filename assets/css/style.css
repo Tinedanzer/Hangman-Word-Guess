@@ -24,12 +24,12 @@ h1{
     width:50%;
 } */
 #white{
-    /* position:fixed; */
-    left:63%;
-    top:37%;
+    position:fixed;
+    left:53%;
+    top:40%;
     /* max-width:100px; */
-    height:55%;
-    width:30.5%;
+    height:60%;
+    width:15.5%;
     z-index:1
 }
 #picture{
