@@ -6,31 +6,53 @@
     float:right;
     color:blue
 }
-#css3{
-    color:blue
+#css3, #spaces{
+    color:blue;
+    font-size: 20px;
 }
 h1{
     color:black;
-    background-color: pink;
+    background-color: pink
 }
 #colormepretty{
-    position:absolute;
+    position:fixed;
     left:61%;
     z-index: 0
 }
 #white{
-    position: absolute;
+    position:fixed;
     left:63%;
     top:37%;
     /* max-width:100px; */
     height:55%;
     width:12.5%;
-    z-index:1;
-    -webkit-webkit: opacity 1;
-    -moz-webkit: opacity 1;
-    -ms-webkit: opacity 1;
-    -o-webkit: opacity 1;
+    z-index:1
 }
 #picture{
     float:left
+}
+@media screen and (max-width:980px)
+{
+  #main-container{
+    width:60%;
+    float:left;
+    padding-left:20px;
+    margin-bottom:30px;
+  }
+  .work{
+    width: 204px;
+  }
+}
+@media screen and (max-width:768px)
+{
+  #main-container{
+    width:100%;
+    float:none;
+    padding-left:none;
+    
+  }
+}
+@media screen and (max-width:640px)
+{
+  
 }

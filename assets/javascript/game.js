@@ -32,7 +32,7 @@ const placeBlanks=()=>{
     chosenLetters.push(newWord);
     for (let i = 0; i < newWord.length; i++) {
 // creates the spaces with IDs and made it blue!
-        let magicSpace= $('<span style="color:blue">').attr('id', 'blank'+i);
+        let magicSpace= $('<span>').attr('id', 'blank'+i);
 // console.log(Object.values(magicSpace));
         $('#spaces').append(magicSpace);
         $('#blank'+i).append("_");
