@@ -1,5 +1,11 @@
 const spacing= " ";
+// words and pictures for the game
 const currentWord=['cheer','grumpy','funshine','tenderheart','share','surprise'];
+const currentPic=['./assets/images/cheer.png','./assets/images/grumpy.png','./assets/images/funshine.png',
+'./assets/images/tenderheart.png','./assets/images/share.png','./assets/images/surprise.png'];
+// below in picSim I will be storing the Index number from mathrandom, to properly associate a picture
+// with the chosen word later.
+let picSim='';
 // randomly chosen word goes in this array.
 let chosenLetters=[];
 // correctly guessed letters go in this array.
@@ -27,7 +33,8 @@ const pushKey2=()=>{
 // also gives ids to the letters of the randomly chosen word!
 const placeBlanks=()=>{
 // calculating a random word, and then splitting each letter to form an array.
-    let newWord=currentWord[randomSelection()].split('');
+    picSim=randomSelection();
+    let newWord=currentWord[picSim].split('');
 // letters for the game
     chosenLetters.push(newWord);
     for (let i = 0; i < newWord.length; i++) {
@@ -47,7 +54,8 @@ const guessCounter=()=>{
             loseMessage();}};
 // adding a win counter and producing a new game
 const winCounter=()=>{
-    win++
+    $("#picture").html("<img src=" + currentPic[picSim] + " width='400px' height='400px'>");
+    win++;
     $('#wins').html(win);
     alert('Congratulations !!! You\'re a Carebear now!')
     gameInit();
@@ -56,6 +64,7 @@ const winCounter=()=>{
 const loseMessage=()=>{
     loss++;
     $('#white').css("z-index", "-1");
+    $('#picture').empty();
     alert("Sorry #notsorry, you have failed. Try again!");
     gameInit();
 };
