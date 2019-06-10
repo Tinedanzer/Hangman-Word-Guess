@@ -12,7 +12,7 @@ let chosenLetters=[];
 let guessedLetters=[];
 // guessed letters go in this array.
 let guessJs=[];
-let guesses= 13;
+let guesses= 10;
 let win=0;
 const letters = /^[A-Za-z]+$/;
 // add in loss counter if u wanna on html.
