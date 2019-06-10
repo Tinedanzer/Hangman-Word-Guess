@@ -78,8 +78,8 @@ const gameInit=()=>{
     guessedLetters=[];
     chosenLetters=[];
     placeBlanks();
-// setting a timeout to display the hanged man for 2 seconds.
-    setTimeout(function replaceBox(){$('#white').css("z-index", "1")},2000);
+// setting a timeout to display the hanged man for 3.5 seconds.
+    setTimeout(function replaceBox(){$('#white').css("z-index", "1")},3500);
 };
 document.onkeyup = function(event) {
     let keyP= event.key.toLowerCase();
