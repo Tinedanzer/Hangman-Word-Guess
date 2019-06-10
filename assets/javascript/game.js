@@ -70,7 +70,7 @@ const loseMessage=()=>{
 };
 // game start function and reset function
 const gameInit=()=>{
-    guesses=13;
+    guesses=10;
     $('#chances').html(guesses)
     $('#guessed').empty();
     $('#spaces').empty();
