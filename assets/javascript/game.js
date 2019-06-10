@@ -107,9 +107,9 @@ console.log(guessedLetters);
                     }
                 }
             }
-// including guessCounter to reduce guesses and determine loss, as well asallowing for wins
+// including guessCounter to reduce guesses and determine loss, as well as allowing for wins
 // to be dominant over losses in case of a tie as shown in loseMessage() within the defined guessCounter above.
-            guessCounter();
+            // guessCounter();
         }
 // checks to see if any letters are already guessed, if not the new letter is pushed to the array and page
         else if(guessJs.some(checkSome) !==true && keyP.match(letters) && keyP!="shift" && keyP!="control" && 
